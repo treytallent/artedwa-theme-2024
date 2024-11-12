@@ -38,6 +38,30 @@ a {
    font-weight: inherit;
 }
 
+/* Override navigation block mobile breakpoint */
+
+body .wp-block-navigation__responsive-container-open:not(.always-shown) {
+   display: block !important;
+}
+body
+   .wp-block-navigation__responsive-container:not(.hidden-by-default):not(
+      .is-menu-open
+   ) {
+   display: none !important;
+}
+
+@media (min-width: 768px) {
+   body .wp-block-navigation__responsive-container-open:not(.always-shown) {
+      display: none !important;
+   }
+   body
+      .wp-block-navigation__responsive-container:not(.hidden-by-default):not(
+         .is-menu-open
+      ) {
+      display: block !important;
+   }
+}
+
 /*****************/
 /* Typography    */
 /*****************/
