@@ -1,0 +1,256 @@
+/*****************/
+/* Reset Classes */
+/*****************/
+*,
+*::before,
+*::after {
+   box-sizing: border-box !important;
+}
+
+* {
+   margin: 0;
+}
+
+:root :where(.is-layout-flow) > * {
+   margin-block-start: unset !important;
+}
+
+:where(.wp-site-blocks) > * {
+   margin-block-start: unset !important;
+}
+
+:root :where(.is-layout-constrained) > * {
+   margin-block-start: unset !important;
+}
+
+:root :where(.is-layout-constrained) > :last-child {
+   margin-block-end: unset !important;
+}
+
+h1,
+h2,
+h3,
+h4,
+p,
+a {
+   margin: 0;
+   padding: 0;
+   font-weight: inherit;
+}
+
+/*****************/
+/* Typography    */
+/*****************/
+
+.h1-lg {
+   font-size: 54px;
+   line-height: 60px;
+   font-weight: 700;
+}
+
+.h2-sm {
+   font-size: 26px;
+   line-height: 36px;
+   font-weight: 700;
+}
+
+.body-lg {
+   font-size: 18px;
+   line-height: 28px;
+}
+
+.body-sm {
+   font-size: 14px;
+   line-height: 20px;
+}
+
+.subheading {
+   font-size: 18px;
+   line-height: 24px;
+}
+
+.subheading-bold {
+   font-size: 18px;
+   line-height: 28px;
+   font-weight: 700;
+}
+
+.label-mid,
+.label-bold {
+   font-size: 16px;
+   line-height: 20px;
+}
+
+.label-mid {
+   font-weight: 400;
+}
+
+.label-bold {
+   font-weight: 700;
+}
+
+/*****************/
+/* Layout        */
+/*****************/
+
+.container {
+   max-width: 1280px;
+   margin: 0 auto;
+   padding: 0 24px;
+}
+
+.inner-container {
+   max-width: 672px;
+   margin: 0 auto;
+}
+
+/* Sm breakpoint */
+@media screen and (min-width: 672px) {
+}
+
+/* Lg breakpoint */
+
+@media screen and (min-width: 1024px) {
+   .container {
+      padding: 0 32px;
+   }
+}
+
+/*****************/
+/* Buttons        */
+/*****************/
+
+/*****************/
+/* Hero Section  */
+/*****************/
+
+.home-hero {
+   width: 100%;
+   padding: 96px 0;
+   overflow-x: hidden;
+   background-image: url("../svg/Hero-Background.svg");
+   background-size: cover;
+   background-position: center bottom 32px;
+   background-repeat: no-repeat;
+}
+
+.home-hero-inner {
+   display: flex;
+   padding: 48px 0;
+   gap: 4px !important;
+   margin: 0 auto;
+   max-width: 1280px;
+}
+
+.home-hero-text {
+   order: 2;
+   max-width: 672px;
+   gap: 32px;
+   margin: auto 0;
+   text-align: center;
+
+   h1 {
+      font-size: 48px;
+      line-height: 1;
+      font-weight: 700;
+   }
+   p {
+      font-size: 22px;
+      line-height: 28px;
+   }
+   div {
+      align-self: center;
+      gap: 24px;
+
+      a.wp-element-button {
+         min-width: 120px;
+      }
+   }
+}
+
+.home-hero-image-1,
+.home-hero-image-2 {
+   position: relative;
+
+   figure {
+      margin-block-start: unset !important;
+      margin-block-end: unset !important;
+      margin-left: unset !important;
+      margin-right: unset !important;
+      max-width: unset !important;
+      margin: unset !important;
+      padding-top: 48px;
+   }
+
+   img {
+      position: relative;
+      z-index: 10;
+      width: 400px;
+      height: 400px !important;
+      object-fit: cover;
+      overflow: visible;
+   }
+
+   svg {
+      position: absolute;
+      top: 0;
+      z-index: 0;
+   }
+}
+
+.home-hero-image-1 {
+   order: 1;
+
+   figure {
+      padding-right: 48px;
+   }
+
+   img {
+      object-position: right;
+      /* border-radius: 0 40px 40px 0; */
+   }
+
+   svg {
+      top: 0;
+      right: 0;
+   }
+}
+
+.home-hero-image-2 {
+   order: 3;
+
+   figure {
+      padding-left: 48px;
+   }
+
+   img {
+      object-position: left;
+      /* border-radius: 40px 0 0 40px; */
+   }
+
+   svg {
+      left: 0;
+   }
+}
+
+@media screen and (min-width: 768px) {
+   .home-hero-inner {
+      gap: 0px !important;
+   }
+
+   .home-hero-text {
+      h1 {
+         font-size: 54px;
+         line-height: 60px;
+      }
+   }
+}
+
+@media screen and (min-width: 1280px) {
+   .home-hero-text {
+      h1 {
+         font-size: 68px;
+         line-height: 1;
+      }
+   }
+}

@@ -1,0 +1,131 @@
+/* Override navigation block mobile breakpoint */
+
+body .wp-block-navigation__responsive-container-open:not(.always-shown) {
+   display: block !important;
+}
+body
+   .wp-block-navigation__responsive-container:not(.hidden-by-default):not(
+      .is-menu-open
+   ) {
+   display: none !important;
+}
+
+@media (min-width: 768px) {
+   body .wp-block-navigation__responsive-container-open:not(.always-shown) {
+      display: none !important;
+   }
+   body
+      .wp-block-navigation__responsive-container:not(.hidden-by-default):not(
+         .is-menu-open
+      ) {
+      display: block !important;
+   }
+}
+
+/* Custom CSS */
+
+header.navigation-row {
+   padding: 16px !important;
+
+   .wp-block-site-logo {
+      align-self: center;
+      img {
+         height: 48px;
+         width: auto;
+      }
+   }
+   .navigation-links-row {
+      flex-direction: row-reverse;
+      gap: 4px;
+      width: 100%;
+      justify-content: space-between;
+
+      .wp-block-navigation-item {
+         position: relative;
+
+         a {
+            padding: 8px;
+         }
+      }
+      .wp-block-navigation-item.current-menu-item::after {
+         content: url(../svg/yellow-underline.svg);
+         position: absolute;
+         top: 20px;
+         width: 100%;
+      }
+   }
+}
+
+/* Changes from mobile nav to expanded */
+@media screen and (min-width: 768px) {
+   header.navigation-row {
+      padding: 12px 24px !important;
+      font-size: 14px;
+      line-height: 20px;
+
+      .navigation-links-row {
+         flex-direction: column;
+
+         .wp-block-navigation {
+            row-gap: 16px;
+
+            .wp-block-navigation__responsive-container-content {
+               justify-content: space-between;
+            }
+         }
+         .wp-block-buttons {
+            flex-wrap: nowrap;
+            gap: 16px;
+
+            .wp-block-button {
+               a {
+                  padding: 12px 16px;
+               }
+            }
+         }
+      }
+   }
+}
+
+@media screen and (min-width: 870px) {
+   header.navigation-row {
+      padding: 16px 32px !important;
+      font-size: initial;
+      line-height: initial;
+
+      .navigation-links-row {
+         .wp-block-navigation {
+            row-gap: 24px;
+         }
+
+         .wp-block-buttons {
+            gap: 16px;
+
+            .wp-block-button {
+               a {
+                  padding: 12px 20px;
+               }
+            }
+         }
+      }
+   }
+}
+
+@media screen and (min-width: 1100px) {
+   header.navigation-row {
+      .navigation-links-row {
+         flex-direction: row;
+         gap: 48px;
+         justify-content: start;
+
+         .wp-block-navigation {
+            flex-grow: 1;
+         }
+      }
+      .wp-block-site-logo {
+         img {
+            height: 64px;
+         }
+      }
+   }
+}

@@ -1,0 +1,136 @@
+{
+   "settings": {
+      "appearanceTools": true,
+      "blocks": {
+         "core/button": {
+            "color": {
+               "background": false
+            }
+         }
+      },
+      "color": {
+         "custom": false,
+         "customDuotone": false,
+         "customGradient": false,
+         "defaultDuotone": false,
+         "defaultGradients": false,
+         "defaultPalette": false,
+         "palette": [
+            {
+               "color": "#292929",
+               "name": "Black Mid",
+               "slug": "black-mid"
+            },
+            {
+               "color": "#4F4F4F",
+               "name": "Black Light",
+               "slug": "black-light"
+            },
+            {
+               "color": "#01645F",
+               "name": "Turquoise Dark",
+               "slug": "turquoise-dark"
+            },
+            {
+               "color": "#079A8E",
+               "name": "Turquoise Mid",
+               "slug": "turquoise-mid"
+            },
+            {
+               "color": "#B20900",
+               "name": "Coral Dark",
+               "slug": "coral-dark"
+            },
+            {
+               "color": "#FF6F61",
+               "name": "Coral Mid",
+               "slug": "coral-mid"
+            },
+            {
+               "color": "#DE911D",
+               "name": "Yellow Dark",
+               "slug": "yellow-dark"
+            },
+            {
+               "color": "#FACC15",
+               "name": "Yellow Mid",
+               "slug": "yellow-mid"
+            },
+            {
+               "color": "#E5DCD3",
+               "name": "Background Dark",
+               "slug": "bg-dark"
+            },
+            {
+               "color": "#FBF9F4",
+               "name": "Background Light",
+               "slug": "bg-light"
+            },
+            {
+               "color": "#FFFFFF",
+               "name": "White",
+               "slug": "white"
+            },
+            {
+               "color": "rgba(255,255,255, 0)",
+               "name": "Transparent",
+               "slug": "transparent"
+            }
+         ]
+      },
+      "layout": {
+         "contentSize": "672px",
+         "wideSize": "1280px"
+      },
+      "spacing": {
+         "units": ["%", "px", "em", "rem", "vh", "vw"]
+      },
+      "typography": {
+         "fontFamilies": [
+            {
+               "fontFamily": "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen-Sans, Ubuntu, Cantarell, 'Helvetica Neue', sans-serif",
+               "name": "System Font",
+               "slug": "system-font"
+            },
+            {
+               "fontFace": [
+                  {
+                     "fontFamily": "Lato",
+                     "fontStyle": "normal",
+                     "fontWeight": "400",
+                     "src": ["file:./assets/fonts/lato/lato-400-normal.woff2"]
+                  },
+                  {
+                     "fontFamily": "Lato",
+                     "fontStyle": "normal",
+                     "fontWeight": "700",
+                     "src": ["file:./assets/fonts/lato/lato-700-normal.woff2"]
+                  }
+               ],
+               "fontFamily": "Lato, sans-serif",
+               "name": "Lato",
+               "slug": "lato"
+            }
+         ]
+      },
+      "useRootPaddingAwareAlignments": true
+   },
+   "styles": {
+      "typography": {
+         "fontFamily": "var(--wp--preset--font-family--lato)",
+         "lineHeight": "1.5"
+      }
+   },
+   "templateParts": [
+      {
+         "area": "header",
+         "name": "header"
+      },
+      {
+         "area": "footer",
+         "name": "footer"
+      }
+   ],
+   "version": 3,
+   "$schema": "https://schemas.wp.org/wp/6.6/theme.json"
+}

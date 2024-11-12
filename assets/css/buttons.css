@@ -1,0 +1,72 @@
+/* Using position relative on the button's parent container places the ::after element behind the a tag */
+.wp-block-button.is-style-primary,
+.wp-block-button.is-style-secondary {
+   position: relative;
+}
+
+.wp-block-button.is-style-primary *,
+.wp-block-button.is-style-secondary * {
+   border: 1.5px solid var(--wp--preset--color--black-mid);
+   background-color: transparent;
+   border-radius: 8px;
+   color: var(--wp--preset--color--black-mid);
+   padding: 12px 20px;
+   font-weight: 400;
+   position: relative;
+   z-index: 10;
+}
+
+/* Primary button and selected tab exclusive styles */
+.wp-block-button.is-style-primary::after {
+   content: url("../svg/stroke-yellow-light.svg") !important;
+   position: absolute;
+   top: 5%;
+   left: 0;
+   width: 105%;
+   z-index: 0;
+   transform: translateX(-1px);
+}
+
+.wp-block-button.is-style-primary:hover.wp-block-button.is-style-primary::after {
+   animation: stroke-primary 500ms;
+   animation-fill-mode: forwards;
+}
+
+@keyframes stroke-primary {
+   from {
+      opacity: 0;
+      transform: translateX(-16px);
+   }
+   to {
+      opacity: 1;
+      content: url("../svg/stroke-yellow-mid.svg");
+      transform: translateX(0px);
+   }
+}
+
+/* Secondary button exclusive styles */
+.wp-block-button.is-style-secondary::after {
+   content: "";
+   position: absolute;
+   inset: 0;
+   width: 105%;
+   z-index: 0;
+   transform: translateX(-1px);
+}
+
+.wp-block-button.is-style-secondary:hover.wp-block-button.is-style-secondary::after {
+   animation: stroke-secondary 500ms;
+   animation-fill-mode: forwards;
+}
+
+@keyframes stroke-secondary {
+   from {
+      opacity: 0;
+      transform: translateX(-16px);
+   }
+   to {
+      opacity: 1;
+      content: url("../svg/stroke-coral-light.svg");
+      transform: translateX(0px);
+   }
+}

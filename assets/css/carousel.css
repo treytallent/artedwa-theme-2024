@@ -1,0 +1,121 @@
+/* Wrapper */
+.wp-block-artedwa-blocks-carousel-wrapper {
+   position: relative;
+   max-width: 1280px;
+   margin: 0 1rem;
+   padding: 96px 0;
+}
+
+@media screen and (min-width: 1313px) {
+   .wp-block-artedwa-blocks-carousel-wrapper {
+      margin: 0 auto;
+   }
+}
+
+/* Indicators */
+.wp-block-artedwa-blocks-carousel-indicators {
+   cursor: pointer;
+   display: flex;
+   column-gap: 8px;
+   position: absolute !important;
+   bottom: 3rem;
+   z-index: 10;
+   left: 50%;
+
+   button {
+      height: 12px;
+      padding: 8px;
+      border-radius: 4px;
+      background-color: unset;
+      aspect-ratio: 1/1;
+      border: 1.5px solid var(--wp--preset--color--black-mid);
+      transition: transform 250ms;
+   }
+   button.is-active {
+      background-color: var(--wp--preset--color--yellow-mid);
+   }
+   button:hover {
+      transform: scale(1.25);
+   }
+}
+
+/* Controls */
+.wp-block-artedwa-blocks-carousel-controls {
+   cursor: pointer;
+   position: absolute !important;
+   top: 50%;
+   z-index: 10;
+   display: flex;
+   width: 100%;
+   justify-content: space-between;
+
+   button {
+      border-radius: 100%;
+      width: 60px;
+      aspect-ratio: 1/1;
+      background-color: white;
+      border: 2px solid var(--wp--preset--color--black-mid);
+      transition: transform 250ms;
+   }
+
+   button:hover {
+      transform: scale(1.1);
+   }
+}
+/* Panels */
+.wp-block-artedwa-blocks-carousel-panel {
+   display: none;
+}
+
+.wp-block-artedwa-blocks-carousel-panel.is-active {
+   height: 100%;
+   display: grid;
+   padding: 0 2rem;
+   margin: 0 auto;
+   gap: 2rem;
+   grid-template-columns: repeat(12, 1fr);
+
+   .card-container {
+      grid-column: 2 / span 5;
+      display: flex;
+      flex-direction: column;
+      margin: auto 0;
+
+      .subheading-bold {
+         color: var(--wp--preset--color--coral-mid);
+         margin-bottom: 4px;
+      }
+
+      .h1-lg {
+         margin-bottom: 32px;
+      }
+
+      .body-lg {
+         margin-bottom: 32px;
+      }
+   }
+
+   img {
+      position: relative;
+      z-index: 10;
+      grid-row: 1;
+      grid-column: 7 / span 6;
+      margin: auto;
+      max-width: 85%;
+      min-height: 50%;
+      max-height: 75%;
+      object-fit: cover;
+      border-radius: 40px;
+      border: 1px solid var(--wp--preset--color--black-light);
+   }
+
+   svg {
+      grid-row: 1;
+      grid-column: 7 / -1;
+      position: relative;
+      inset: 0;
+      z-index: 0;
+      width: 100%;
+      height: 100%;
+   }
+}

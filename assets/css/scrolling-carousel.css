@@ -1,0 +1,79 @@
+.home-we-support {
+   padding: 96px 0;
+}
+
+.wp-block-artedwa-blocks-scrolling-carousel {
+   max-width: 1280px;
+   margin: 0 auto;
+   padding: 48px 0 0;
+
+   position: relative;
+
+   .controls {
+      cursor: pointer;
+      position: absolute;
+      top: 43%;
+      z-index: 10;
+      display: flex;
+      width: 100%;
+      justify-content: space-between;
+
+      button {
+         border-radius: 100%;
+         width: 60px;
+         aspect-ratio: 1/1;
+         background-color: white;
+         border: 2px solid var(--wp--preset--color--black-mid);
+         transition: transform 250ms;
+      }
+
+      button:hover {
+         transform: scale(1.1);
+      }
+   }
+
+   .wp-block-query {
+      ul {
+         display: flex;
+         gap: 2rem;
+         overflow-x: scroll;
+         scroll-behavior: smooth;
+
+         li:first-child {
+            margin-left: 64px;
+         }
+         li:last-child {
+            margin-right: 64px;
+         }
+
+         li {
+            max-width: 180px;
+            flex-shrink: 0;
+
+            img {
+               height: 80px;
+               max-width: 100%;
+               object-fit: contain;
+            }
+            a {
+               text-decoration: none;
+               display: flex;
+               flex-direction: column;
+               align-items: center;
+               text-align: center;
+               gap: 16px;
+            }
+         }
+      }
+   }
+}
+
+/* Hide browser scrollbar */
+.wp-block-artedwa-blocks-scrolling-carousel ul {
+   -ms-overflow-style: none; /* Internet Explorer 10+ */
+   scrollbar-width: none; /* Firefox */
+}
+
+.wp-block-artedwa-blocks-scrolling-carousel ul::-webkit-scrollbar {
+   display: none; /* Safari and Chrome */
+}

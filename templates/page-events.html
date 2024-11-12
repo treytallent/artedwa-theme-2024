@@ -1,0 +1,103 @@
+<!-- wp:template-part {"slug":"header","tagName":"header"} /-->
+
+<!-- wp:artedwa-blocks/tabs-wrapper {"taxonomies":[{"name":"Event Categories","slug":"event-category"},{"name":"Resource Categories","slug":"resource-categories"}],"selectedTaxonomy":"event-category","selectedTaxonomyCategories":[{"name":"exhibitions-and-shows","slug":"exhibitions-and-shows"},{"name":"misc","slug":"misc"},{"name":"workshops","slug":"workshops"}]} -->
+<section class="wp-block-artedwa-blocks-tabs-wrapper"><!-- wp:artedwa-blocks/tabs-list -->
+<div class="wp-block-artedwa-blocks-tabs-list"><!-- wp:artedwa-blocks/tab {"id":0,"isActive":true,"selectedCategory":"exhibitions-and-shows","title":"Exhibitions and Shows","icon":"\u003csvg xmlns=\u0022http://www.w3.org/2000/svg\u0022 fill=\u0022none\u0022 viewBox=\u00220 0 24 24\u0022 stroke-width=\u00221.5\u0022 stroke=\u0022currentColor\u0022 class=\u0022size-6\u0022\u003e\u003cpath stroke-linecap=\u0022round\u0022 stroke-linejoin=\u0022round\u0022 d=\u0022m11.25 11.25.041-.02a.75.75 0 0 1 1.063.852l-.708 2.836a.75.75 0 0 0 1.063.853l.041-.021M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9-3.75h.008v.008H12V8.25Z\u0022\u003e\u003c/path\u003e\u003c/svg\u003e"} -->
+<div class="wp-block-artedwa-blocks-tab"></div>
+<!-- /wp:artedwa-blocks/tab -->
+
+<!-- wp:artedwa-blocks/tab {"id":1,"selectedCategory":"workshops","title":"Workshops","icon":"\u003csvg xmlns=\u0022http://www.w3.org/2000/svg\u0022 fill=\u0022none\u0022 viewBox=\u00220 0 24 24\u0022 stroke-width=\u00221.5\u0022 stroke=\u0022currentColor\u0022 class=\u0022size-6\u0022\u003e\u003cpath stroke-linecap=\u0022round\u0022 stroke-linejoin=\u0022round\u0022 d=\u0022m11.25 11.25.041-.02a.75.75 0 0 1 1.063.852l-.708 2.836a.75.75 0 0 0 1.063.853l.041-.021M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9-3.75h.008v.008H12V8.25Z\u0022\u003e\u003c/path\u003e\u003c/svg\u003e"} -->
+<div class="wp-block-artedwa-blocks-tab"></div>
+<!-- /wp:artedwa-blocks/tab --></div>
+<!-- /wp:artedwa-blocks/tabs-list -->
+
+<!-- wp:artedwa-blocks/panels-list -->
+<div class="wp-block-artedwa-blocks-panels-list"><!-- wp:artedwa-blocks/panel {"id":0,"isActive":true,"selectedCategory":"exhibitions-and-shows"} -->
+<!-- wp:query {"queryId":1,"query":{"perPage":3,"pages":0,"offset":0,"postType":"event","order":"desc","orderBy":"date","author":"","search":"","exclude":[],"sticky":"","inherit":false,"parents":[]}} -->
+<div class="wp-block-query"><!-- wp:post-template -->
+<!-- wp:artedwa-blocks/event-card {"category":"exhibitions-and-shows","className":"is-style-primary"} -->
+<div class="wp-block-artedwa-blocks-event-card is-style-primary"></div>
+<!-- /wp:artedwa-blocks/event-card -->
+<!-- /wp:post-template -->
+
+<!-- wp:query-pagination -->
+<!-- wp:query-pagination-previous /-->
+
+<!-- wp:query-pagination-numbers /-->
+
+<!-- wp:query-pagination-next /-->
+<!-- /wp:query-pagination -->
+
+<!-- wp:query-no-results -->
+<!-- wp:paragraph {"placeholder":"Add text or blocks that will display when a query returns no results."} -->
+<p></p>
+<!-- /wp:paragraph -->
+<!-- /wp:query-no-results --></div>
+<!-- /wp:query -->
+<!-- /wp:artedwa-blocks/panel -->
+
+<!-- wp:artedwa-blocks/panel {"id":1,"selectedCategory":"workshops"} -->
+<!-- wp:query {"queryId":1,"query":{"perPage":10,"pages":0,"offset":0,"postType":"event","order":"desc","orderBy":"date","author":"","search":"","exclude":[],"sticky":"","inherit":false,"parents":[]}} -->
+<div class="wp-block-query"><!-- wp:post-template -->
+<!-- wp:artedwa-blocks/event-card {"category":"workshops"} -->
+<div class="wp-block-artedwa-blocks-event-card"></div>
+<!-- /wp:artedwa-blocks/event-card -->
+<!-- /wp:post-template -->
+
+<!-- wp:query-pagination -->
+<!-- wp:query-pagination-previous /-->
+
+<!-- wp:query-pagination-numbers /-->
+
+<!-- wp:query-pagination-next /-->
+<!-- /wp:query-pagination -->
+
+<!-- wp:query-no-results -->
+<!-- wp:paragraph {"placeholder":"Add text or blocks that will display when a query returns no results."} -->
+<p></p>
+<!-- /wp:paragraph -->
+<!-- /wp:query-no-results --></div>
+<!-- /wp:query -->
+<!-- /wp:artedwa-blocks/panel --></div>
+<!-- /wp:artedwa-blocks/panels-list --></section>
+<!-- /wp:artedwa-blocks/tabs-wrapper -->
+
+<!-- wp:group {"tagName":"main","layout":{"type":"constrained"}} -->
+<main class="wp-block-group"><!-- wp:query {"queryId":1,"query":{"perPage":10,"pages":0,"offset":0,"postType":"post","order":"desc","orderBy":"date","author":"","search":"","exclude":[],"sticky":"","inherit":true,"taxQuery":null,"parents":[]},"layout":{"contentSize":null,"type":"constrained"}} -->
+<div class="wp-block-query"><!-- wp:post-template {"layout":{"type":"default"}} -->
+<!-- wp:group -->
+<div class="wp-block-group"><!-- wp:post-title {"isLink":true} /-->
+
+<!-- wp:post-featured-image {"isLink":true} /-->
+
+<!-- wp:post-content /-->
+
+<!-- wp:group {"style":{"typography":{"fontSize":"14px"}},"layout":{"type":"flex"}} -->
+<div class="wp-block-group" style="font-size:14px"><!-- wp:post-author {"showAvatar":false,"showBio":false} /-->
+
+<!-- wp:post-date {"isLink":true} /-->
+
+<!-- wp:post-terms {"term":"category"} /-->
+
+<!-- wp:post-terms {"term":"post_tag"} /--></div>
+<!-- /wp:group -->
+
+<!-- wp:spacer {"height":"40px"} -->
+<div style="height:40px" aria-hidden="true" class="wp-block-spacer"></div>
+<!-- /wp:spacer --></div>
+<!-- /wp:group -->
+<!-- /wp:post-template -->
+
+<!-- wp:group {"layout":{"inherit":true,"type":"constrained"}} -->
+<div class="wp-block-group"><!-- wp:query-pagination -->
+<!-- wp:query-pagination-previous /-->
+
+<!-- wp:query-pagination-numbers /-->
+
+<!-- wp:query-pagination-next /-->
+<!-- /wp:query-pagination --></div>
+<!-- /wp:group --></div>
+<!-- /wp:query --></main>
+<!-- /wp:group -->
+
+<!-- wp:template-part {"slug":"footer","tagName":"footer"} /-->
