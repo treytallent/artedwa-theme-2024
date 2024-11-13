@@ -16,57 +16,51 @@
    z-index: 10;
 }
 
+/* Shared button styling */
 /* Primary button and selected tab exclusive styles */
-.wp-block-button.is-style-primary::after {
-   content: url("../svg/stroke-yellow-light.svg") !important;
-   position: absolute;
-   top: 5%;
-   left: 0;
-   width: 105%;
-   z-index: 0;
-   transform: translateX(-1px);
-}
-
-.wp-block-button.is-style-primary:hover.wp-block-button.is-style-primary::after {
-   animation: stroke-primary 500ms;
-   animation-fill-mode: forwards;
-}
-
-@keyframes stroke-primary {
-   from {
-      opacity: 0;
-      transform: translateX(-16px);
-   }
-   to {
-      opacity: 1;
-      content: url("../svg/stroke-yellow-mid.svg");
-      transform: translateX(0px);
-   }
-}
-
-/* Secondary button exclusive styles */
+.wp-block-button.is-style-primary::after,
 .wp-block-button.is-style-secondary::after {
    content: "";
    position: absolute;
-   inset: 0;
+   top: 0px;
+   left: 0px;
+   height: 110%;
    width: 105%;
-   z-index: 0;
-   transform: translateX(-1px);
+   border-radius: 80px;
+   z-index: 1;
 }
 
-.wp-block-button.is-style-secondary:hover.wp-block-button.is-style-secondary::after {
-   animation: stroke-secondary 500ms;
-   animation-fill-mode: forwards;
+.wp-block-button.is-style-primary::after {
+   background-color: var(--wp--preset--color--yellow-mid);
+   transition: opacity 300ms ease-out;
 }
 
-@keyframes stroke-secondary {
-   from {
-      opacity: 0;
-      transform: translateX(-16px);
-   }
-   to {
-      opacity: 1;
-      content: url("../svg/stroke-coral-light.svg");
-      transform: translateX(0px);
-   }
+/* Primary resting state */
+.wp-block-button.is-style-primary:not(:hover, :focus, :active)::after {
+   opacity: 0.7;
+}
+
+/* Primary active state */
+.wp-block-button.is-style-primary:is(:hover, :focus, :active)::after {
+   opacity: 1;
+   filter: contrast(1.1);
+}
+
+/* Secondary button */
+.wp-block-button.is-style-secondary::after {
+   background-color: var(--wp--preset--color--coral-mid);
+   transform: translateY(-2px) translateX(-2px);
+   transition: all 300ms ease-out;
+}
+
+/* Secondary resting state */
+.wp-block-button.is-style-secondary:not(:hover, :focus, :active)::after {
+   width: 0;
+   opacity: 0;
+}
+
+/* Secondary active state */
+.wp-block-button.is-style-secondary:is(:hover, :focus, :active)::after {
+   width: 105%;
+   opacity: 100;
 }
