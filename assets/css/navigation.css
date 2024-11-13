@@ -1,32 +1,4 @@
-/* Override navigation block mobile breakpoint */
-
-body .wp-block-navigation__responsive-container-open:not(.always-shown) {
-   display: block !important;
-}
-body
-   .wp-block-navigation__responsive-container:not(.hidden-by-default):not(
-      .is-menu-open
-   ) {
-   display: none !important;
-}
-
-@media (min-width: 768px) {
-   body .wp-block-navigation__responsive-container-open:not(.always-shown) {
-      display: none !important;
-   }
-   body
-      .wp-block-navigation__responsive-container:not(.hidden-by-default):not(
-         .is-menu-open
-      ) {
-      display: block !important;
-   }
-}
-
-/* Custom CSS */
-
-header.navigation-row {
-   padding: 16px !important;
-
+.navigation-row {
    .wp-block-site-logo {
       align-self: center;
       img {

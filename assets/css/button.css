@@ -1,25 +1,10 @@
-/* Using position relative on the button's parent container places the ::after element behind the a tag */
-.wp-block-button.is-style-primary,
-.wp-block-button.is-style-secondary {
-   position: relative;
-}
-
-.wp-block-button.is-style-primary *,
-.wp-block-button.is-style-secondary * {
-   border: 1.5px solid var(--wp--preset--color--black-mid);
-   background-color: transparent;
-   border-radius: 8px;
-   color: var(--wp--preset--color--black-mid);
-   padding: 12px 20px;
-   font-weight: 400;
+.wp-block-button,
+.wp-block-button a {
    position: relative;
    z-index: 10;
 }
 
-/* Shared button styling */
-/* Primary button and selected tab exclusive styles */
-.wp-block-button.is-style-primary::after,
-.wp-block-button.is-style-secondary::after {
+.wp-block-button::after {
    content: "";
    position: absolute;
    top: 0px;
@@ -35,32 +20,27 @@
    transition: opacity 300ms ease-out;
 }
 
-/* Primary resting state */
 .wp-block-button.is-style-primary:not(:hover, :focus, :active)::after {
    opacity: 0.7;
 }
 
-/* Primary active state */
 .wp-block-button.is-style-primary:is(:hover, :focus, :active)::after {
    opacity: 1;
    filter: contrast(1.1);
 }
 
-/* Secondary button */
 .wp-block-button.is-style-secondary::after {
    background-color: var(--wp--preset--color--coral-mid);
    transform: translateY(-2px) translateX(-2px);
    transition: all 300ms ease-out;
 }
 
-/* Secondary resting state */
 .wp-block-button.is-style-secondary:not(:hover, :focus, :active)::after {
    width: 0;
    opacity: 0;
 }
 
-/* Secondary active state */
 .wp-block-button.is-style-secondary:is(:hover, :focus, :active)::after {
    width: 105%;
-   opacity: 100;
+   opacity: 1;
 }

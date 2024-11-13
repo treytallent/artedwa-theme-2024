@@ -13,3 +13,121 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Text Domain: artedwa-2024
 Tags: 
 */
+
+*,
+*::before,
+*::after {
+   box-sizing: border-box !important;
+}
+
+:where(.wp-site-blocks *:focus) {
+   outline-width: 2px;
+   outline-style: solid;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+blockquote,
+caption,
+figcaption,
+p {
+   text-wrap: pretty;
+}
+
+.wp-site-blocks {
+   padding-bottom: unset;
+}
+
+/* Override navigation block mobile breakpoint */
+body .wp-block-navigation__responsive-container-open:not(.always-shown) {
+   display: block !important;
+}
+body
+   .wp-block-navigation__responsive-container:not(.hidden-by-default):not(
+      .is-menu-open
+   ) {
+   display: none !important;
+}
+
+@media (min-width: 768px) {
+   body .wp-block-navigation__responsive-container-open:not(.always-shown) {
+      display: none !important;
+   }
+   body
+      .wp-block-navigation__responsive-container:not(.hidden-by-default):not(
+         .is-menu-open
+      ) {
+      display: block !important;
+   }
+}
+
+.more-link {
+   display: block;
+}
+
+:root :where(.is-layout-flow) > * {
+   margin-block-start: var(--wp--style--block-gap);
+}
+
+.has-14-20-font-size {
+   line-height: 20px;
+}
+.has-14-24-font-size {
+   line-height: 24px;
+}
+.has-16-20-font-size {
+   line-height: 20px;
+}
+.has-18-28-font-size {
+   line-height: 28px;
+}
+.has-26-36-font-size {
+   line-height: 36px;
+}
+.has-40-44-font-size {
+   line-height: 44px;
+}
+
+.has-68-68-font-size {
+   line-height: 68px;
+}
+
+@media screen and (min-width: 678px) {
+   :root {
+      --wp--style--block-gap: var(--wp--preset--spacing--24);
+   }
+
+   body {
+      --wp--style--root--padding-top: var(--wp--preset--spacing--24);
+      --wp--style--root--padding-right: var(--wp--preset--spacing--24);
+      --wp--style--root--padding-bottom: var(--wp--preset--spacing--24);
+      --wp--style--root--padding-left: var(--wp--preset--spacing--24);
+   }
+}
+
+@media screen and (min-width: 1024px) {
+   :root {
+      --wp--style--block-gap: var(--wp--preset--spacing--32);
+      --wp--preset--font-size--26-36: 40px;
+      --wp--preset--font-size--40-44: 54px;
+   }
+
+   body {
+      --wp--style--root--padding-top: var(--wp--preset--spacing--32);
+      --wp--style--root--padding-right: var(--wp--preset--spacing--32);
+      --wp--style--root--padding-bottom: var(--wp--preset--spacing--32);
+      --wp--style--root--padding-left: var(--wp--preset--spacing--32);
+   }
+
+   .has-26-36-font-size {
+      line-height: 44px;
+   }
+
+   .has-40-44-font-size {
+      line-height: 60px;
+   }
+}

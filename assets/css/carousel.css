@@ -1,15 +1,5 @@
-/* Wrapper */
 .wp-block-artedwa-blocks-carousel-wrapper {
    position: relative;
-   max-width: 1280px;
-   margin: 0 1rem;
-   padding: 96px 0;
-}
-
-@media screen and (min-width: 1313px) {
-   .wp-block-artedwa-blocks-carousel-wrapper {
-      margin: 0 auto;
-   }
 }
 
 /* Indicators */
@@ -62,6 +52,7 @@
       transform: scale(1.1);
    }
 }
+
 /* Panels */
 .wp-block-artedwa-blocks-carousel-panel {
    display: none;
