@@ -211,22 +211,14 @@ if (! function_exists('enqueue_after_theme')) :
 				'path' => get_template_directory_uri() . '/assets/css/tabs.css',
 			)
 		);
-		wp_enqueue_block_style(
-			'artedwa-blocks/carousel-wrapper',
-			array(
-				'handle' => 'block-variations-carousel-wrapper',
-				'src' => get_template_directory_uri() . '/assets/css/carousel.css',
-				'path' => get_template_directory_uri() . '/assets/css/carousel.css',
-			)
-		);
-		wp_enqueue_block_style(
-			'artedwa-blocks/scrolling-carousel',
-			array(
-				'handle' => 'block-variations-scrolling-carousel',
-				'src' => get_template_directory_uri() . '/assets/css/scrolling-carousel.css',
-				'path' => get_template_directory_uri() . '/assets/css/scrolling-carousel.css',
-			)
-		);
+		// wp_enqueue_block_style(
+		// 	'artedwa-blocks/carousel-wrapper',
+		// 	array(
+		// 		'handle' => 'block-variations-carousel-wrapper',
+		// 		'src' => get_template_directory_uri() . '/assets/css/carousel.css',
+		// 		'path' => get_template_directory_uri() . '/assets/css/carousel.css',
+		// 	)
+		// );
 	}
 endif;
 add_action('after_setup_theme', 'enqueue_after_theme');

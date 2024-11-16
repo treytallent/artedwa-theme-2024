@@ -39,6 +39,7 @@ p {
 }
 
 .wp-site-blocks {
+   padding-top: unset;
    padding-bottom: unset;
 }
 

@@ -122,9 +122,11 @@ footer {
 /***************************/
 
 .home-hero {
+   margin-top: 0;
    width: 100%;
-   padding: 96px 0;
-   overflow-x: hidden;
+   padding-top: 48px;
+   padding-bottom: 128px;
+   overflow: hidden;
    background-image: url("../svg/Hero-Background.svg");
    background-size: cover;
    background-position: center bottom 32px;
@@ -150,6 +152,14 @@ footer {
       font-size: 48px;
       line-height: 1;
       font-weight: 700;
+
+      mark.has-inline-color {
+         display: flex;
+         background-color: unset !important;
+         background-image: url("http://localhost:10053/wp-content/themes/artedwa-2024/assets/svg/Hero-Text-Stroke.svg");
+         background-size: contain;
+         background-repeat: no-repeat;
+      }
    }
    p {
       font-size: 22px;
