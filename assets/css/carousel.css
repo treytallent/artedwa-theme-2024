@@ -24,9 +24,6 @@
    button.is-active {
       background-color: var(--wp--preset--color--yellow-mid);
    }
-   button:hover {
-      transform: scale(1.25);
-   }
 }
 
 /* Controls */

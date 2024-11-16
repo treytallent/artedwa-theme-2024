@@ -19,11 +19,22 @@
             padding: 8px;
          }
       }
+
+      .wp-block-navigation-item {
+         position: relative;
+      }
+
       .wp-block-navigation-item.current-menu-item::after {
-         content: url(../svg/yellow-underline.svg);
+         content: "";
          position: absolute;
-         top: 20px;
+         bottom: -6px;
+         background-color: rgba(250, 204, 21, 0.5);
+         border-radius: 500% 100% 200% 0%;
+         display: flex;
+         width: 90%;
+         height: 6px;
          width: 100%;
+         transition: width 250ms ease-out;
       }
    }
 }

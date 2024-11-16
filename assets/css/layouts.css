@@ -15,11 +15,105 @@ footer {
       z-index: 10;
    }
 
-   svg {
+   /* Column links */
+   div.wp-block-columns.is-not-stacked-on-mobile {
+      flex-wrap: wrap !important;
+      column-gap: 16px;
+      row-gap: 48px;
+
+      .wp-block-column.cta-column {
+         flex-basis: 100%;
+      }
+
+      .wp-block-column {
+         flex-basis: 40%;
+      }
+   }
+
+   /* CTA Links */
+   .facebook-link,
+   .email-link {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1.5px solid #4f4f4f;
+      border-radius: 4px;
+      width: 40px;
+      aspect-ratio: 1/1;
+      transition: transform 250ms ease-out;
+   }
+
+   .facebook-link:is(:hover, :focus, :active),
+   .email-link:is(:hover, :focus, :active) {
+      transform: scale(1.1);
+   }
+
+   /* Mesh CTA */
+   .wp-block-artedwa-blocks-link-wrapper {
+      display: flex;
+      gap: 8px;
+
+      figure,
+      p {
+         margin: 0;
+      }
+      p {
+         margin-top: 4px;
+      }
+   }
+
+   /* Bottom svg */
+   .footer-stroke {
       position: absolute;
+      height: 15%;
+      left: -10%;
       bottom: 0;
       z-index: 1;
       margin-bottom: -8px;
+   }
+}
+
+@media screen and (min-width: 678px) {
+   footer {
+      .acknowledgement {
+         text-align: center;
+      }
+      .wp-block-columns {
+         column-gap: 16px !important;
+
+         .wp-block-column:not(.cta-column) {
+            flex-basis: 0 !important;
+            flex-grow: 1 !important;
+         }
+      }
+   }
+}
+
+@media screen and (min-width: 750px) {
+   footer {
+      .wp-block-columns {
+         column-gap: 16px !important;
+
+         .wp-block-column:not(.cta-column),
+         .wp-block-column.cta-column {
+            flex-basis: 0 !important;
+            flex-grow: 1 !important;
+         }
+      }
+      .footer-stroke {
+         left: 0;
+         height: 25%;
+         width: 130%;
+      }
+   }
+}
+
+@media screen and (min-width: 1280px) {
+   footer {
+      .footer-stroke {
+         height: 30%;
+         width: 100%;
+      }
    }
 }
 

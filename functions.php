@@ -27,14 +27,13 @@ add_action('enqueue_block_editor_assets', 'editor_assets');
 
 
 // Handles the registration and unregistration of block styles
-function block_variations_register()
+function register_block_styles()
 {
 	register_block_style(
 		'core/button',
 		array(
 			'name' => 'primary',
 			'label' => 'Primary',
-			'block_variations_register',
 			'is_default' => true
 		)
 	);
@@ -43,7 +42,6 @@ function block_variations_register()
 		array(
 			'name' => 'secondary',
 			'label' => 'Secondary',
-			'block_variations_register',
 		)
 	);
 	register_block_style(
@@ -51,7 +49,6 @@ function block_variations_register()
 		array(
 			'name' => 'secondary',
 			'label' => 'Secondary',
-			'block_variations_register',
 		)
 	);
 	register_block_style(
@@ -59,7 +56,6 @@ function block_variations_register()
 		array(
 			'name' => 'splatter',
 			'label' => 'Splatter',
-			'block_variations_register',
 			'is_default' => true
 		)
 	);
@@ -68,7 +64,6 @@ function block_variations_register()
 		array(
 			'name' => 'primary',
 			'label' => 'Primary',
-			'block_variations_register',
 			'is_default' => true
 		)
 	);
@@ -77,7 +72,6 @@ function block_variations_register()
 		array(
 			'name' => 'upcoming',
 			'label' => 'Upcoming Event',
-			'block_variations_register',
 			'is_default' => true
 		)
 	);
@@ -86,11 +80,10 @@ function block_variations_register()
 		array(
 			'name' => 'past',
 			'label' => 'Past Event',
-			'block_variations_register',
 		)
 	);
 }
-add_action('enqueue_block_editor_assets', 'block_variations_register');
+add_action('init', 'register_block_styles');
 
 // Modifies the query for upcoming_date_query_loop_name on the front-end
 add_filter('pre_render_block', 'upcoming_date_query_loop_name_pre_render_block', 10, 2);
