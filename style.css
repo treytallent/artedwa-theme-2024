@@ -25,6 +25,10 @@ Tags:
    outline-style: solid;
 }
 
+:root {
+   --wp--preset--spacing--r: var(--wp--style--block-gap) !important;
+}
+
 h1,
 h2,
 h3,
@@ -54,6 +58,10 @@ body
    display: none !important;
 }
 
+.wp-block-columns {
+   gap: var(--wp--style--block-gap);
+}
+
 @media (min-width: 768px) {
    body .wp-block-navigation__responsive-container-open:not(.always-shown) {
       display: none !important;
@@ -68,10 +76,6 @@ body
 
 .more-link {
    display: block;
-}
-
-:root :where(.is-layout-flow) > * {
-   margin-block-start: var(--wp--style--block-gap);
 }
 
 .has-14-20-font-size {

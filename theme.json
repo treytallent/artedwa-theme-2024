@@ -80,6 +80,7 @@
          "customSpacingSize": false,
          "defaultSpacingSizes": false,
          "spacingSizes": [
+            { "name": "Responsive", "size": "16px", "slug": "R" },
             { "name": "4 Static", "size": "4px", "slug": "4" },
             { "name": "8 Static", "size": "8px", "slug": "8" },
             { "name": "12 Static", "size": "12px", "slug": "12" },

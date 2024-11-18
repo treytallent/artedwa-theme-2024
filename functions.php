@@ -222,3 +222,66 @@ if (! function_exists('enqueue_after_theme')) :
 	}
 endif;
 add_action('after_setup_theme', 'enqueue_after_theme');
+
+// Registers ACF custom fields as post metadata to use the Block Bindings API to display custom fields on blocks.
+function register_acf_meta()
+{
+	$shared_meta_keys = array(
+		'title',
+		'short_description',
+		'long_description',
+		'link',
+		'img'
+	);
+
+	foreach ($shared_meta_keys as $meta_key) {
+		register_meta(
+			'post',
+			$meta_key,
+			array(
+				'show_in_rest'      => true,
+				'single'            => true,
+				'type'              => 'string',
+				'sanitize_callback' => 'wp_strip_all_tags'
+			)
+		);
+	}
+
+	$volunteer_meta_keys = array(
+		'expectations',
+		'contact'
+	);
+
+	foreach ($volunteer_meta_keys as $meta_key) {
+		register_meta(
+			'post',
+			$meta_key,
+			array(
+				'object_subtype' => 'volunteer-role',
+				'show_in_rest'      => true,
+				'single'            => true,
+				'type'              => 'string',
+				'sanitize_callback' => 'wp_strip_all_tags'
+			)
+		);
+	}
+
+	$committee_meta_keys = array(
+		'role',
+	);
+
+	foreach ($committee_meta_keys as $meta_key) {
+		register_meta(
+			'post',
+			$meta_key,
+			array(
+				'object_subtype' => 'committee-member',
+				'show_in_rest'      => true,
+				'single'            => true,
+				'type'              => 'string',
+				'sanitize_callback' => 'wp_strip_all_tags'
+			)
+		);
+	}
+}
+add_action('init', 'register_acf_meta');
