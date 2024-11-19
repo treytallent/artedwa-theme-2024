@@ -195,93 +195,251 @@ if (! function_exists('enqueue_after_theme')) :
 				'path' => get_template_directory_uri() . '/assets/css/navigation.css',
 			)
 		);
-		wp_enqueue_block_style(
-			'artedwa-blocks/event-card',
-			array(
-				'handle' => 'block-variations-css-cards',
-				'src' => get_template_directory_uri() . '/assets/css/card.css',
-				'path' => get_template_directory_uri() . '/assets/css/card.css',
-			)
-		);
-		wp_enqueue_block_style(
-			'artedwa-blocks/tabs-wrapper',
-			array(
-				'handle' => 'block-variations-tabs-wrapper',
-				'src' => get_template_directory_uri() . '/assets/css/tabs.css',
-				'path' => get_template_directory_uri() . '/assets/css/tabs.css',
-			)
-		);
-		// wp_enqueue_block_style(
-		// 	'artedwa-blocks/carousel-wrapper',
-		// 	array(
-		// 		'handle' => 'block-variations-carousel-wrapper',
-		// 		'src' => get_template_directory_uri() . '/assets/css/carousel.css',
-		// 		'path' => get_template_directory_uri() . '/assets/css/carousel.css',
-		// 	)
-		// );
 	}
 endif;
 add_action('after_setup_theme', 'enqueue_after_theme');
 
-// Registers ACF custom fields as post metadata to use the Block Bindings API to display custom fields on blocks.
-function register_acf_meta()
-{
-	$shared_meta_keys = array(
-		'title',
-		'short_description',
-		'long_description',
-		'link',
-		'img'
-	);
-
-	foreach ($shared_meta_keys as $meta_key) {
-		register_meta(
-			'post',
-			$meta_key,
-			array(
-				'show_in_rest'      => true,
-				'single'            => true,
-				'type'              => 'string',
-				'sanitize_callback' => 'wp_strip_all_tags'
-			)
-		);
+// Registers ACF Fields on the server to use the block binding API. As of now in 6.7 this is the only way to bind images to blocks
+add_action('acf/include_fields', function () {
+	if (! function_exists('acf_add_local_field_group')) {
+		return;
 	}
-
-	$volunteer_meta_keys = array(
-		'expectations',
-		'contact'
-	);
-
-	foreach ($volunteer_meta_keys as $meta_key) {
-		register_meta(
-			'post',
-			$meta_key,
+	// Committee member fields
+	acf_add_local_field_group(array(
+		'key' => 'committee-fields',
+		'title' => 'Committee Fields',
+		'fields' => array(
 			array(
-				'object_subtype' => 'volunteer-role',
-				'show_in_rest'      => true,
-				'single'            => true,
-				'type'              => 'string',
-				'sanitize_callback' => 'wp_strip_all_tags'
-			)
-		);
-	}
-
-	$committee_meta_keys = array(
-		'role',
-	);
-
-	foreach ($committee_meta_keys as $meta_key) {
-		register_meta(
-			'post',
-			$meta_key,
+				'key' => 'committee-fields-name',
+				'label' => 'Name',
+				'name' => 'committee-fields-name',
+				'type' => 'text',
+				'required' => 1,
+			),
 			array(
-				'object_subtype' => 'committee-member',
-				'show_in_rest'      => true,
-				'single'            => true,
-				'type'              => 'string',
-				'sanitize_callback' => 'wp_strip_all_tags'
-			)
-		);
-	}
-}
-add_action('init', 'register_acf_meta');
+				'key' => 'committee-fields-role',
+				'label' => 'Role',
+				'name' => 'committee-fields-role',
+				'type' => 'text',
+				'required' => 0,
+			),
+			array(
+				'key' => 'committee-fields-short-description',
+				'label' => 'Short Description',
+				'name' => 'committee-fields-short-description',
+				'type' => 'textarea',
+				'required' => 0,
+			),
+			array(
+				'key' => 'committee-fields-img',
+				'label' => 'Image',
+				'name' => 'committee-fields-img',
+				'type' => 'image',
+				'required' => 1,
+				'return_format' => 'url',
+				'library' => 'uploadedTo',
+				'preview_size' => 'medium',
+			),
+		),
+		'location' => array(
+			array(
+				array(
+					'param' => 'post_type',
+					'operator' => '==',
+					'value' => 'committee-member',
+				),
+			),
+		),
+		'menu_order' => 0,
+		'position' => 'normal',
+		'style' => 'default',
+		'label_placement' => 'top',
+		'instruction_placement' => 'label',
+		'hide_on_screen' => '',
+		'active' => true,
+		'description' => '',
+		'show_in_rest' => 0,
+	));
+
+	// Event fields
+	acf_add_local_field_group(array(
+		'key' => 'event-fields',
+		'title' => 'Event Fields',
+		'fields' => array(
+			array(
+				'key' => 'event-fields-title',
+				'label' => 'Event Name',
+				'name' => 'event-fields-event-name',
+				'type' => 'text',
+				'instructions' => 'Limited characters to avoid layout inconsistencies.',
+				'required' => 1,
+				'conditional_logic' => 0,
+			),
+			array(
+				'key' => 'event-fields-short-description',
+				'label' => 'Short Description',
+				'name' => 'event-fields-short-description',
+				'type' => 'textarea',
+				'instructions' => '',
+				'required' => 1,
+				'conditional_logic' => 0,
+			),
+			array(
+				'key' => 'event-fields-start-date',
+				'label' => 'Start Date',
+				'name' => 'event-fields-start-date',
+				'type' => 'date_picker',
+				'instructions' => 'What date does the event start?',
+				'required' => 1,
+				'display_format' => 'F-j-y',
+				'return_format' => 'F-j',
+			),
+			array(
+				'key' => 'event-fields-end-date',
+				'label' => 'End Date',
+				'name' => 'event-fields-end-date',
+				'type' => 'date_picker',
+				'instructions' => 'What date does the event end?',
+				'required' => 1,
+				'display_format' => 'F-j-y',
+				'return_format' => 'F-j',
+			),
+			array(
+				'key' => 'event-fields-img',
+				'label' => 'Image',
+				'name' => 'event-fields-img',
+				'type' => 'image',
+				'required' => 1,
+				'return_format' => 'url',
+				'library' => 'uploadedTo',
+				'preview_size' => 'medium',
+			),
+			array(
+				'key' => 'event-fields-url',
+				'label' => 'Read More URL',
+				'name' => 'event-fields-url',
+				'type' => 'url',
+				'instructions' => 'Link to a page for more details on the event, such as Eventbrite',
+				'required' => 1,
+			),
+		),
+		'location' => array(
+			array(
+				array(
+					'param' => 'post_type',
+					'operator' => '==',
+					'value' => 'event',
+				),
+			),
+		),
+		'menu_order' => 0,
+		'position' => 'normal',
+		'style' => 'default',
+		'label_placement' => 'top',
+		'instruction_placement' => 'label',
+		'hide_on_screen' => '',
+		'active' => true,
+		'description' => '',
+		'show_in_rest' => 0,
+	));
+
+	// Organisations We Support Fields
+	acf_add_local_field_group(array(
+		'key' => 'we-support-fields',
+		'title' => 'Organisations We Support Fields',
+		'fields' => array(
+			array(
+				'key' => 'we-support-fields-title',
+				'label' => 'Organisation Name',
+				'name' => 'we-support-fields-title',
+				'type' => 'text',
+				'required' => 1,
+			),
+			array(
+				'key' => 'we-support-fields-img',
+				'label' => 'Logo',
+				'name' => 'we-support-fields-img',
+				'aria-label' => '',
+				'type' => 'image',
+				'instructions' => 'These images should be small. Ideally, they should be a webp file extension with a height of 60px and an automatic width that allows the image to maintain its original aspect ratio with a height of 60px.',
+				'required' => 1,
+				'return_format' => 'url',
+				'library' => 'uploadedTo',
+				'min_width' => '80',
+				'min_height' => '80',
+				'max_width' => '800',
+				'max_height' => '200',
+				'preview_size' => 'medium',
+			),
+			array(
+				'key' => 'we-support-fields-url',
+				'label' => 'Link',
+				'name' => 'we-support-fields-url',
+				'type' => 'url',
+				'instructions' => 'Link to learn more about the organisation. This can be their website or social media.',
+				'required' => 1,
+			),
+		),
+		'location' => array(
+			array(
+				array(
+					'param' => 'post_type',
+					'operator' => '==',
+					'value' => 'organisation',
+				),
+			),
+		),
+		'menu_order' => 0,
+		'position' => 'normal',
+		'style' => 'default',
+		'label_placement' => 'top',
+		'instruction_placement' => 'label',
+		'hide_on_screen' => '',
+		'active' => true,
+		'description' => '',
+		'show_in_rest' => 0,
+	));
+
+	// Volunteer Role Fields
+	acf_add_local_field_group(array(
+		'key' => 'volunteer-role-fields',
+		'title' => 'Volunteer Role Fields',
+		'fields' => array(
+			array(
+				'key' => 'volunteer-role-fields-title',
+				'label' => 'Role Title',
+				'name' => 'volunteer-role-fields-title',
+				'type' => 'text',
+				'instructions' => 'Displayed as the title of the job opening on the "Join Us" page.',
+				'required' => 1,
+				'maxlength' => '90',
+			),
+			array(
+				'key' => 'volunteer-role-fields-short-description',
+				'label' => 'Short Description',
+				'name' => 'volunteer-role-fields-short-description',
+				'type' => 'textarea',
+				'instructions' => 'Displayed as the job description on the "Join Us" page.',
+				'required' => 1,
+			),
+		),
+		'location' => array(
+			array(
+				array(
+					'param' => 'post_type',
+					'operator' => '==',
+					'value' => 'volunteer-role',
+				),
+			),
+		),
+		'menu_order' => 0,
+		'position' => 'normal',
+		'style' => 'default',
+		'label_placement' => 'top',
+		'instruction_placement' => 'label',
+		'hide_on_screen' => '',
+		'active' => true,
+		'description' => '',
+		'show_in_rest' => 0,
+	));
+});

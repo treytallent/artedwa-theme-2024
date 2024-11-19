@@ -80,7 +80,7 @@
          "customSpacingSize": false,
          "defaultSpacingSizes": false,
          "spacingSizes": [
-            { "name": "Responsive", "size": "16px", "slug": "R" },
+            { "name": "Responsive", "size": "15.99px", "slug": "R" },
             { "name": "4 Static", "size": "4px", "slug": "4" },
             { "name": "8 Static", "size": "8px", "slug": "8" },
             { "name": "12 Static", "size": "12px", "slug": "12" },
@@ -122,9 +122,14 @@
                "slug": "18-28"
             },
             {
+               "name": "26/36 Static",
+               "size": "25.99px",
+               "slug": "26-36-s"
+            },
+            {
                "name": "26/36 Responsive",
                "size": "26px",
-               "slug": "26-36"
+               "slug": "26-36-r"
             },
             {
                "name": "40/44 Responsive",
@@ -186,6 +191,13 @@
          "lineHeight": "1.5"
       },
       "blocks": {
+         "core/group": {
+            "spacing": {
+               "margin": {
+                  "top": "0"
+               }
+            }
+         },
          "core/button": {
             "color": {
                "text": "var:preset|color|black-mid",
