@@ -1,0 +1,120 @@
+.home-hero {
+   overflow: hidden;
+   background-image: url("../svg/Hero-Background.svg");
+   background-size: cover;
+   background-position: center bottom 32px;
+   background-repeat: no-repeat;
+
+   .home-hero-inner {
+      .home-hero-text {
+         order: 2;
+         max-width: var(--wp--style--global--content-size);
+
+         h1 {
+            font-size: 36px;
+            line-height: 40px;
+
+            mark.has-inline-color {
+               text-wrap: nowrap;
+               display: flex;
+               background-color: unset !important;
+               background-image: url("../svg/Hero-Text-Stroke.svg");
+               background-size: contain;
+               background-repeat: no-repeat;
+            }
+         }
+         p {
+            font-size: 18px;
+            line-height: 28px;
+         }
+
+         .wp-element-button {
+            min-width: 120px;
+         }
+      }
+
+      .home-hero-image-1,
+      .home-hero-image-2 {
+         position: relative;
+
+         figure {
+            margin-left: unset !important;
+            margin-right: unset !important;
+            max-width: unset !important;
+            margin: unset !important;
+            padding-top: 48px;
+
+            img {
+               position: relative;
+               z-index: 10;
+               overflow: visible;
+            }
+         }
+
+         svg {
+            position: absolute;
+            top: 0;
+            z-index: 0;
+         }
+      }
+
+      .home-hero-image-1 {
+         order: 1;
+
+         figure {
+            padding-right: 48px;
+         }
+
+         img {
+            object-position: right;
+         }
+
+         svg {
+            top: 0;
+            right: 0;
+         }
+      }
+
+      .home-hero-image-2 {
+         order: 3;
+
+         figure {
+            padding-left: 48px;
+         }
+
+         img {
+            object-position: left;
+         }
+
+         svg {
+            left: 0;
+         }
+      }
+   }
+}
+
+@media screen and (min-width: 768px) {
+   .home-hero {
+      padding-bottom: 128px;
+
+      .home-hero-inner {
+         .home-hero-text {
+            h1 {
+               font-size: 54px;
+               line-height: 60px;
+            }
+         }
+      }
+   }
+}
+
+@media screen and (min-width: 1040px) {
+   .home-hero {
+      .home-hero-inner {
+         .home-hero-text {
+            h1 {
+            }
+         }
+      }
+   }
+}
