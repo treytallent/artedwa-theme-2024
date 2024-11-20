@@ -6,6 +6,7 @@
          width: auto;
       }
    }
+
    .navigation-links-row {
       flex-direction: row-reverse;
       gap: 4px;
