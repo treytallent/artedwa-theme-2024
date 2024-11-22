@@ -1,5 +1,21 @@
 <?php
 
+// Removes all but these blocks from Gutenberg editor
+function set_allowed_blocks($allowed_block_types, $block_editor_context)
+{
+	if ('volunteer-role' === $block_editor_context->post->post_type) {
+		$allowed_block_types = array(
+			'core/heading',
+			'core/paragraph',
+			'core/image',
+			'core/list',
+		);
+	}
+	return $allowed_block_types;
+};
+add_filter('allowed_block_types_all', 'set_allowed_blocks', 10, 2);
+
+
 // Unregisters default block styles & registers block variations
 // This can only be done using JS because it requires dependencies
 function editor_assets()
@@ -75,13 +91,6 @@ function register_block_styles()
 			'is_default' => true
 		)
 	);
-	register_block_style(
-		'artedwa-blocks/event-card',
-		array(
-			'name' => 'past',
-			'label' => 'Past Event',
-		)
-	);
 }
 add_action('init', 'register_block_styles');
 
@@ -95,7 +104,7 @@ function upcoming_date_query_loop_name_pre_render_block($pre_render, $parsed_blo
 			function ($query, $block) {
 				if ($query['post_type'] === 'event') {
 					$today = date('Ymd');
-					$query['meta_key'] = 'end_date';
+					$query['meta_key'] = 'event-fields-end-date';
 					$query['meta_value'] = $today;
 					$query['meta_compare'] = '>=';
 					$query['orderby'] = 'meta_value';
@@ -122,7 +131,7 @@ function past_date_query_loop_name_pre_render_block($pre_render, $parsed_block)
 			function ($query, $block) {
 				if ($query['post_type'] === 'event') {
 					$today = date('Ymd');
-					$query['meta_key'] = 'end_date';
+					$query['meta_key'] = 'event-fields-end-date';
 					$query['meta_value'] = $today;
 					$query['meta_compare'] = '<';
 					$query['orderby'] = 'meta_value';
@@ -283,6 +292,7 @@ add_action('acf/include_fields', function () {
 				'instructions' => '',
 				'required' => 1,
 				'conditional_logic' => 0,
+				'maxlength' => '400',
 			),
 			array(
 				'key' => 'event-fields-start-date',
@@ -291,8 +301,8 @@ add_action('acf/include_fields', function () {
 				'type' => 'date_picker',
 				'instructions' => 'What date does the event start?',
 				'required' => 1,
-				'display_format' => 'F-j-y',
-				'return_format' => 'F-j',
+				'display_format' => 'F j, Y',
+				'return_format' => 'F j',
 			),
 			array(
 				'key' => 'event-fields-end-date',
@@ -301,8 +311,8 @@ add_action('acf/include_fields', function () {
 				'type' => 'date_picker',
 				'instructions' => 'What date does the event end?',
 				'required' => 1,
-				'display_format' => 'F-j-y',
-				'return_format' => 'F-j',
+				'display_format' => 'F j, Y',
+				'return_format' => 'F j',
 			),
 			array(
 				'key' => 'event-fields-img',
@@ -310,8 +320,13 @@ add_action('acf/include_fields', function () {
 				'name' => 'event-fields-img',
 				'type' => 'image',
 				'required' => 1,
+				'instructions' => 'Image height/width must be at least 400px and no more than 600px.',
 				'return_format' => 'url',
 				'library' => 'uploadedTo',
+				'min_width' => '200',
+				'min_height' => '200',
+				'max_width' => '600',
+				'max_height' => '600',
 				'preview_size' => 'medium',
 			),
 			array(
@@ -421,6 +436,7 @@ add_action('acf/include_fields', function () {
 				'type' => 'textarea',
 				'instructions' => 'Displayed as the job description on the "Join Us" page.',
 				'required' => 1,
+				'maxlength' => '400',
 			),
 		),
 		'location' => array(

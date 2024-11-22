@@ -1,0 +1,9 @@
+.max-w-content {
+   max-width: var(--wp--style--global--content-size) !important;
+   margin-left: 0 !important;
+}
+
+.max-w-wide {
+   max-width: var(--wp--style--global--wide-size) !important;
+   margin: auto;
+}
