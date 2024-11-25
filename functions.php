@@ -1,45 +1,21 @@
 <?php
 
-// Removes all but these blocks from Gutenberg editor
+// Restricts blocks on resource and volunteer-role posts
 function set_allowed_blocks($allowed_block_types, $block_editor_context)
 {
-	if ('volunteer-role' === $block_editor_context->post->post_type) {
+	if ($block_editor_context->post->post_type === 'resource' || $block_editor_context->post->post_type ===  'volunteer-role') {
 		$allowed_block_types = array(
 			'core/heading',
 			'core/paragraph',
 			'core/image',
 			'core/list',
+			'core/buttons',
+			'core/spacer',
 		);
 	}
 	return $allowed_block_types;
 };
 add_filter('allowed_block_types_all', 'set_allowed_blocks', 10, 2);
-
-
-// Unregisters default block styles & registers block variations
-// This can only be done using JS because it requires dependencies
-function editor_assets()
-{
-	$dependencies = array('wp-blocks', 'wp-dom-ready');
-	if (is_object(get_current_screen())) {
-		if (get_current_screen()->id == 'site-editor') {
-			$dependencies[] = 'wp-edit-site';
-		} elseif (get_current_screen()->id == 'widgets') {
-			$dependencies[] = 'wp-edit-widgets';
-		} else {
-			$dependencies[] = 'wp-edit-post';
-		}
-	} else {
-		$dependencies[] = 'wp-edit-post';
-	}
-	wp_enqueue_script(
-		'unregister-script',
-		get_template_directory_uri() . '/assets/js/unregister.js',
-		$dependencies
-	);
-	wp_enqueue_script('block-variations', get_template_directory_uri() . '/assets/js/variations.js', array('wp-blocks'));
-}
-add_action('enqueue_block_editor_assets', 'editor_assets');
 
 
 // Handles the registration and unregistration of block styles
@@ -120,7 +96,6 @@ function upcoming_date_query_loop_name_pre_render_block($pre_render, $parsed_blo
 	return $pre_render;
 }
 
-
 // Modifies the query for past_date_query_loop_name on the front-end
 add_filter('pre_render_block', 'past_date_query_loop_name_pre_render_block', 10, 2);
 function past_date_query_loop_name_pre_render_block($pre_render, $parsed_block)
@@ -156,10 +131,6 @@ if (! function_exists('enqueue_stylesheet')) :
 			'style-css',
 			get_parent_theme_file_uri('style.css'),
 		);
-		wp_enqueue_style(
-			'layouts-css',
-			get_parent_theme_file_uri('assets/css/layouts.css')
-		);
 	}
 endif;
 add_action('wp_enqueue_scripts', 'enqueue_stylesheet');
@@ -169,9 +140,6 @@ if (! function_exists('enqueue_after_theme')) :
 
 	function enqueue_after_theme()
 	{
-		add_editor_style(get_parent_theme_file_uri('assets/css/editor-style.css'));
-		add_editor_style(get_parent_theme_file_uri('assets/css/layouts.css'));
-
 		wp_enqueue_block_style(
 			'core/button',
 			array(
@@ -223,6 +191,7 @@ add_action('acf/include_fields', function () {
 				'label' => 'Name',
 				'name' => 'committee-fields-name',
 				'type' => 'text',
+				'maxlength' => '50',
 				'required' => 1,
 			),
 			array(
@@ -230,6 +199,7 @@ add_action('acf/include_fields', function () {
 				'label' => 'Role',
 				'name' => 'committee-fields-role',
 				'type' => 'text',
+				'maxlength' => '50',
 				'required' => 0,
 			),
 			array(
@@ -237,6 +207,7 @@ add_action('acf/include_fields', function () {
 				'label' => 'Short Description',
 				'name' => 'committee-fields-short-description',
 				'type' => 'textarea',
+				'maxlength' => '200',
 				'required' => 0,
 			),
 			array(
@@ -245,8 +216,13 @@ add_action('acf/include_fields', function () {
 				'name' => 'committee-fields-img',
 				'type' => 'image',
 				'required' => 1,
+				'instructions' => "Before uploading please ensure your image has been optimised by following the instructions in the handover document.",
 				'return_format' => 'url',
 				'library' => 'uploadedTo',
+				'min_width' => '200',
+				'min_height' => '200',
+				'max_width' => '600',
+				'max_height' => '600',
 				'preview_size' => 'medium',
 			),
 		),
@@ -281,6 +257,7 @@ add_action('acf/include_fields', function () {
 				'name' => 'event-fields-event-name',
 				'type' => 'text',
 				'instructions' => 'Limited characters to avoid layout inconsistencies.',
+				'maxlength' => '50',
 				'required' => 1,
 				'conditional_logic' => 0,
 			),
@@ -320,7 +297,7 @@ add_action('acf/include_fields', function () {
 				'name' => 'event-fields-img',
 				'type' => 'image',
 				'required' => 1,
-				'instructions' => 'Image height/width must be at least 400px and no more than 600px.',
+				'instructions' => 'Before uploading please ensure your image has been optimised by following the instructions in the handover document.',
 				'return_format' => 'url',
 				'library' => 'uploadedTo',
 				'min_width' => '200',
@@ -376,14 +353,14 @@ add_action('acf/include_fields', function () {
 				'name' => 'we-support-fields-img',
 				'aria-label' => '',
 				'type' => 'image',
-				'instructions' => 'These images should be small. Ideally, they should be a webp file extension with a height of 60px and an automatic width that allows the image to maintain its original aspect ratio with a height of 60px.',
+				'instructions' => 'Before uploading please ensure your image has been optimised by following the instructions in the handover document.',
 				'required' => 1,
 				'return_format' => 'url',
 				'library' => 'uploadedTo',
 				'min_width' => '80',
 				'min_height' => '80',
-				'max_width' => '800',
-				'max_height' => '200',
+				'max_width' => '400',
+				'max_height' => '400',
 				'preview_size' => 'medium',
 			),
 			array(
@@ -445,6 +422,67 @@ add_action('acf/include_fields', function () {
 					'param' => 'post_type',
 					'operator' => '==',
 					'value' => 'volunteer-role',
+				),
+			),
+		),
+		'menu_order' => 0,
+		'position' => 'normal',
+		'style' => 'default',
+		'label_placement' => 'top',
+		'instruction_placement' => 'label',
+		'hide_on_screen' => '',
+		'active' => true,
+		'description' => '',
+		'show_in_rest' => 0,
+	));
+
+	// Resource Fields
+	acf_add_local_field_group(array(
+		'key' => 'resource-fields',
+		'title' => 'Resource Fields',
+		'fields' => array(
+			array(
+				'key' => 'resource-fields-title',
+				'label' => 'Resource Title',
+				'name' => 'resource-fields-name',
+				'type' => 'text',
+				'instructions' => 'Limited characters to avoid layout inconsistencies.',
+				'maxlength' => '50',
+				'required' => 1,
+				'conditional_logic' => 0,
+			),
+			array(
+				'key' => 'resource-fields-short-description',
+				'label' => 'Short Description',
+				'name' => 'resource-fields-short-description',
+				'type' => 'textarea',
+				'instructions' => '',
+				'required' => 1,
+				'conditional_logic' => 0,
+				'maxlength' => '400',
+			),
+			array(
+				'key' => 'resource-fields-img',
+				'label' => 'Image',
+				'name' => 'resource-fields-img',
+				'type' => 'image',
+				'required' => 1,
+				'instructions' => 'Before uploading please ensure your image has been optimised by following the instructions in the handover document.',
+				'return_format' => 'url',
+				'library' => 'uploadedTo',
+				'min_width' => '200',
+				'min_height' => '200',
+				'max_width' => '600',
+				'max_height' => '600',
+				'preview_size' => 'medium',
+			),
+		),
+		'location' => array(
+			array(
+				array(
+					'param' => 'post_type',
+					'operator' => '==',
+					'value' => 'resource',
 				),
 			),
 		),

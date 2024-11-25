@@ -40,6 +40,32 @@
    }
 }
 
+.wp-block-navigation__responsive-container.has-modal-open.is-menu-open {
+   ul {
+      gap: 1rem !important;
+   }
+   li {
+      font-size: 18px;
+      line-height: 28px;
+      padding: 16px;
+      width: 100%;
+   }
+   .wp-block-buttons {
+      margin-top: 1rem;
+      .wp-block-button {
+         a {
+            font-size: 18px;
+            min-width: 120px;
+         }
+      }
+   }
+   .wp-block-navigation-item.current-menu-item::after {
+      width: 70%;
+      bottom: 8px;
+      left: 8px;
+   }
+}
+
 /* Changes from mobile nav to expanded */
 @media screen and (min-width: 768px) {
    header.navigation-row {

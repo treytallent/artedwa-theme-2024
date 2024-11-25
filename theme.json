@@ -168,9 +168,11 @@
                "slug": "lato"
             }
          ]
+      },
+      "blocks": {
+         "core/heading": {}
       }
    },
-
    "styles": {
       "color": {
          "background": "var:preset|color|white",
@@ -211,6 +213,15 @@
          }
       },
       "elements": {
+         "h1": {
+            "typography": { "fontSize": "var:preset|font-size|40-44" }
+         },
+         "h2": {
+            "typography": { "fontSize": "var:preset|font-size|26-36-r" }
+         },
+         "h3": {
+            "typography": { "fontSize": "var:preset|font-size|18-28" }
+         },
          "button": {
             "border": {
                "radius": "var:preset|spacing|8"
