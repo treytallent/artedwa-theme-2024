@@ -1,11 +1,14 @@
 .wp-block-button,
-.wp-block-button a {
+.wp-block-button a,
+.wp-block-button.wa-button .wa_login_shortcode,
+.wp-block-button.wa-button .wa_login_shortcode form {
    position: relative;
    z-index: 10;
    width: fit-content;
 }
 
-.wp-block-button::after {
+.wp-block-button::after,
+.wp-block-button.wa-button .wa_login_shortcode::after {
    content: "";
    position: absolute;
    top: 0px;
@@ -30,18 +33,49 @@
    filter: contrast(1.1);
 }
 
-.wp-block-button.is-style-secondary::after {
+.wp-block-button.is-style-secondary::after,
+.wp-block-button.wa-button .wa_login_shortcode::after {
    background-color: var(--wp--preset--color--coral-mid);
    transform: translateY(-2px) translateX(-2px);
    transition: all 300ms ease-out;
 }
 
-.wp-block-button.is-style-secondary:not(:hover, :focus, :active)::after {
+.wp-block-button.is-style-secondary:not(:hover, :focus, :active)::after,
+.wp-block-button.wa-button
+   .wa_login_shortcode:not(:hover, :focus, :active)::after {
    width: 0;
    opacity: 0;
 }
 
-.wp-block-button.is-style-secondary:is(:hover, :focus, :active)::after {
+.wp-block-button.is-style-secondary:is(:hover, :focus, :active)::after,
+.wp-block-button.wa-button
+   .wa_login_shortcode:is(:hover, :focus, :active)::after {
    width: 105%;
    opacity: 1;
+}
+
+.wp-block-button.wa-button {
+   a {
+      border: unset;
+      padding: unset !important;
+      .wa_login_shortcode {
+         border-radius: 8px;
+
+         form {
+            p {
+               display: none;
+            }
+            input[type="submit"] {
+               padding: 12px 20px;
+               border-radius: 8px;
+               border: 1.5px solid;
+               background-color: unset;
+               font-family: inherit;
+               font-size: inherit;
+            }
+         }
+      }
+      .wa_login_shortcode:hover {
+      }
+   }
 }

@@ -60,6 +60,14 @@ function register_block_styles()
 		)
 	);
 	register_block_style(
+		'core/post-template',
+		array(
+			'name' => 'resource',
+			'label' => 'Resource Card',
+			'is_default' => false
+		)
+	);
+	register_block_style(
 		'artedwa-blocks/event-card',
 		array(
 			'name' => 'upcoming',
@@ -170,6 +178,14 @@ if (! function_exists('enqueue_after_theme')) :
 				'handle' => 'block-variations-css-navigation',
 				'src' => get_template_directory_uri() . '/assets/css/navigation.css',
 				'path' => get_template_directory_uri() . '/assets/css/navigation.css',
+			)
+		);
+		wp_enqueue_block_style(
+			'core/post-template',
+			array(
+				'handle' => 'block-variations-css-post-template',
+				'src' => get_template_directory_uri() . '/assets/css/post-template.css',
+				'path' => get_template_directory_uri() . '/assets/css/post-template.css',
 			)
 		);
 	}

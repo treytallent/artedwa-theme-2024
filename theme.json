@@ -85,6 +85,7 @@
             { "name": "8 Static", "size": "8px", "slug": "8" },
             { "name": "12 Static", "size": "12px", "slug": "12" },
             { "name": "16 Static", "size": "16px", "slug": "16" },
+            { "name": "20 Static", "size": "20px", "slug": "20" },
             { "name": "24 Static", "size": "24px", "slug": "24" },
             { "name": "32 Static", "size": "32px", "slug": "32" },
             { "name": "48 Static", "size": "48px", "slug": "48" },
@@ -204,6 +205,17 @@
             "color": {
                "text": "var:preset|color|black-mid",
                "background": "var:preset|color|transparent"
+            },
+            "typography": {
+               "lineHeight": "initial"
+            },
+            "spacing": {
+               "padding": {
+                  "top": "var:preset|spacing|12",
+                  "bottom": "var:preset|spacing|12",
+                  "left": "var:preset|spacing|20",
+                  "right": "var:preset|spacing|20"
+               }
             },
             "border": {
                "color": "var:preset|color|black-mid",
